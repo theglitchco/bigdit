@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harlaton</title>
+    <meta
+      name="description"
+      content="Preserve colour relationship across lighting and white balance changes using mired shift calculations."
+    />
+    <link rel="stylesheet" href="../../src/styles/global.css" />
+    <script type="module" src="../../src/tools/mired-shift/app.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="page-header">
+        <a class="back-link" href="/">All tools</a>
+        <p class="eyebrow">Mired Shift Calculator</p>
+        <h1>Harlaton</h1>
+        <p class="subtle-copy">
+          Calculate the required light setting or camera white balance to preserve the same colour
+          relationship.
+        </p>
+      </header>
+
+      <div class="calculator-grid">
+        <section class="panel panel-input">
+          <div class="mode-toggle" role="tablist" aria-label="Calculation mode">
+            <button class="mode-button is-active" type="button" data-mode="light" aria-pressed="true">
+              Solve for Light
+            </button>
+            <button class="mode-button" type="button" data-mode="camera" aria-pressed="false">
+              Solve for Camera WB
+            </button>
+          </div>
+
+          <form class="calculator-form" novalidate>
+            <div class="field-group">
+              <label class="field-label" for="original-light">Original light</label>
+              <input id="original-light" name="originalLight" inputmode="numeric" autocomplete="off" />
+              <p class="field-help" data-field-help="originalLight">Kelvin, positive number.</p>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="original-camera">Original camera WB</label>
+              <input id="original-camera" name="originalCamera" inputmode="numeric" autocomplete="off" />
+              <p class="field-help" data-field-help="originalCamera">Kelvin, positive number.</p>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="target-input" data-target-label>New camera WB</label>
+              <input id="target-input" name="target" inputmode="numeric" autocomplete="off" />
+              <p class="field-help" data-field-help="target" data-target-help>
+                Kelvin for the new camera white balance.
+              </p>
+            </div>
+
+            <div class="preset-section">
+              <p class="section-label">Presets</p>
+              <div class="preset-row" aria-label="Kelvin presets">
+                <button type="button" class="preset-chip" data-preset="2800">2800</button>
+                <button type="button" class="preset-chip" data-preset="3200">3200</button>
+                <button type="button" class="preset-chip" data-preset="4300">4300</button>
+                <button type="button" class="preset-chip" data-preset="5600">5600</button>
+                <button type="button" class="preset-chip" data-preset="6000">6000</button>
+                <button type="button" class="preset-chip" data-preset="6500">6500</button>
+              </div>
+            </div>
+
+            <div class="rounding-row">
+              <label class="field-label" for="rounding-mode">Rounding</label>
+              <select id="rounding-mode" name="roundingMode">
+                <option value="exact">Exact</option>
+                <option value="50">Nearest 50K</option>
+                <option value="100">Nearest 100K</option>
+              </select>
+            </div>
+          </form>
+        </section>
+
+        <aside class="panel panel-result" aria-live="polite">
+          <p class="section-label">Result</p>
+          <div class="result-card">
+            <p class="result-label" data-result-label>Required light setting</p>
+            <p class="result-value" data-result-value>--</p>
+            <p class="result-shift" data-shift-value>Original mired shift: --</p>
+            <p class="interpretation" data-interpretation>
+              Enter the original light, original camera WB, and new target value.
+            </p>
+            <div class="warning-stack" data-warning-stack hidden></div>
+            <div class="action-row">
+              <button type="button" class="secondary-button" data-copy-result>Copy result</button>
+              <p class="copy-feedback" data-copy-feedback aria-live="polite"></p>
+            </div>
+          </div>
+
+          <details class="details-drawer">
+            <summary>Calculation details</summary>
+            <pre class="formula-output" data-formula-output>Waiting for valid inputs.</pre>
+          </details>
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>
