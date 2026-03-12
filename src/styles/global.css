@@ -15,6 +15,7 @@
   --radius: 24px;
   --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, serif;
   --font-body: "Avenir Next", "Segoe UI", sans-serif;
+  --font-retro: "Courier New", "Lucida Console", Monaco, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -77,6 +78,8 @@ select {
 .hero-card,
 .future-card,
 .panel {
+  position: relative;
+  overflow: hidden;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -87,6 +90,38 @@ select {
 .hero-card,
 .future-card {
   padding: 1.5rem;
+}
+
+.hero-card::before,
+.future-card::before {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(227, 139, 85, 0.2), transparent 28%),
+    radial-gradient(circle at 82% 12%, rgba(38, 95, 73, 0.22), transparent 24%),
+    radial-gradient(circle at 72% 78%, rgba(198, 95, 45, 0.18), transparent 22%);
+  transform: scale(1);
+  filter: blur(18px);
+  opacity: 0.8;
+  transition:
+    transform 260ms ease,
+    filter 260ms ease,
+    opacity 260ms ease;
+  pointer-events: none;
+}
+
+.hero-card:hover::before,
+.future-card:hover::before {
+  transform: scale(1.08);
+  filter: blur(26px);
+  opacity: 1;
+}
+
+.hero-card > *,
+.future-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .eyebrow,
@@ -121,6 +156,21 @@ h2 {
 .future-card p {
   max-width: 52ch;
   color: var(--text-muted);
+}
+
+.site-wordmark {
+  max-width: none;
+  font-family: var(--font-retro);
+  font-size: clamp(2.8rem, 9vw, 6.2rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-shadow: 0.08em 0.08em 0 rgba(198, 95, 45, 0.18);
+}
+
+.hero-card-home {
+  min-height: 44vh;
+  display: grid;
+  align-content: end;
 }
 
 .primary-link,
@@ -169,6 +219,34 @@ h2 {
 .calculator-grid {
   display: grid;
   gap: 1rem;
+}
+
+.feature-card {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 70px rgba(49, 37, 21, 0.16);
+  border-color: rgba(198, 95, 45, 0.22);
+}
+
+.feature-row {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+}
+
+.feature-copy {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.feature-copy p {
+  margin: 0;
 }
 
 .panel {
@@ -305,6 +383,14 @@ select {
 @media (min-width: 860px) {
   .shell {
     padding-top: 2rem;
+  }
+
+  .shell-home {
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  }
+
+  .feature-row {
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
   .calculator-grid {
