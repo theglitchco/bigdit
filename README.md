@@ -1,6 +1,6 @@
-# Harlaton
+# bigdit
 
-Static, mobile-first web app for preserving the same mired offset between a light source and camera white balance when a setup changes.
+Static, mobile-first web app for on-set colour and exposure utilities. The first tool in the suite is `Harlaton`, a mired shift calculator for preserving the same offset between a light source and camera white balance when a setup changes.
 
 ## What is included
 
@@ -54,7 +54,7 @@ Typical setup:
 ```sh
 git init
 git add .
-git commit -m "Initial Harlaton site"
+git commit -m "Initial bigdit site"
 git branch -M main
 git remote add origin <your-github-repo-url>
 git push -u origin main
@@ -77,7 +77,7 @@ For a subdomain, add a `CNAME` record pointing to `<your-github-username>.github
 
 For an apex/root domain, use your DNS provider's `ALIAS`, `ANAME`, or the `A` records GitHub Pages specifies in its setup UI.
 
-If you want the custom domain committed in-repo as well, add a `CNAME` file at the project root containing just the domain name, and update the build script to copy it into `dist/`.
+This repo already includes a `CNAME` file for `bigdit.co.uk`, and the build copies it into `dist/` for GitHub Pages.
 
 ## Architecture notes
 

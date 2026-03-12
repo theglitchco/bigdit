@@ -9,6 +9,7 @@ await rm(distDir, { recursive: true, force: true });
 await mkdir(distDir, { recursive: true });
 
 await cp(path.join(rootDir, "index.html"), path.join(distDir, "index.html"));
+await cp(path.join(rootDir, "CNAME"), path.join(distDir, "CNAME"));
 await cp(path.join(rootDir, "tools"), path.join(distDir, "tools"), { recursive: true });
 await cp(path.join(rootDir, "src"), path.join(distDir, "src"), { recursive: true });
 
